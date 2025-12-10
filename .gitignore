@@ -16,9 +16,6 @@ client/.idea/
 client/src/main/java/checkers/
 client/target/generated-sources/
 
-# Pasta antiga (se existir)
-proto/
-
 # OS
 .DS_Store
 Thumbs.db
