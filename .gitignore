@@ -1,0 +1,37 @@
+# Node.js
+server/node_modules/
+server/package-lock.json
+server/npm-debug.log*
+server/yarn.lock
+
+# Java / Maven
+client/target/
+client/.classpath
+client/.project
+client/.settings/
+client/*.iml
+client/.idea/
+
+# Protocol Buffers gerados automaticamente
+client/src/main/java/checkers/
+client/target/generated-sources/
+
+# Pasta antiga (se existir)
+proto/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
