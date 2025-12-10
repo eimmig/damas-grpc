@@ -1,7 +1,6 @@
 package com.checkers.client;
 
-import checkers.CheckersOuterClass.*;
-import checkers.CheckersGameGrpc;
+import com.checkers.grpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -372,10 +371,11 @@ public class CheckersClient extends JFrame {
                     nomeTextField.setEnabled(false);
                 });
                 
-                // Envia primeira mensagem (inicializa jogador no servidor)
+                // Envia primeira mensagem com o nome do jogador
                 requestObserver.onNext(GameMessage.newBuilder()
                     .setWaiting(WaitingForPlayer.newBuilder()
                         .setMessage("Conectando...")
+                        .setPlayerName(nomeJogador)
                         .build())
                     .build());
                 

@@ -55,12 +55,19 @@ function playGame(call) {
   // Recebe mensagens do cliente
   call.on('data', (gameMessage) => {
     try {
-      // Primeira mensagem deve conter o nome do jogador (simulando conexão)
+      // Primeira mensagem deve conter o nome do jogador
       if (!playerId) {
-        // A primeira mensagem pode ser qualquer coisa, vamos extrair o playerId do metadata
-        // ou criar um novo jogador
         playerId = generatePlayerId();
-        playerName = `Jogador_${playerId.substring(0, 6)}`;
+        
+        // Extrai o nome do jogador da mensagem WaitingForPlayer
+        if (gameMessage.waiting && gameMessage.waiting.player_name) {
+          playerName = gameMessage.waiting.player_name;
+        } else {
+          // Fallback se não vier nome
+          playerName = `Jogador_${playerId.split('_')[2]}`;
+        }
+        
+        console.log(`[SERVIDOR] Jogador "${playerName}" conectou (ID: ${playerId})`);
         
         // Adiciona o jogador à fila
         const result = roomManager.addPlayer({ id: playerId, name: playerName, stream: call });
